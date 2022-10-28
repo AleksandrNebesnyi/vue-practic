@@ -1,21 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-
   <Title></Title>
-  <Button type="button">Clikk</Button>
+  <Button v-on:click="increment" type="button" outlined>Clikk</Button>
+  <h1>{{ title }}</h1>
+  <DirectiveTest />
 </template>
 
 <script>
 import Title from './components/Title.vue';
 import Button from './components/Button.vue';
-// import Btn from './components/Button';
+import DirectiveTest from './components/DirectiveTest.vue';
 
 export default {
   name: 'App',
   components: {
     Title,
     Button,
-    // Btn,
+    DirectiveTest,
+  },
+  data() {
+    return {
+      amountOfClicks: 1,
+    };
+  },
+  computed: {
+    title() {
+      return `Amount click ${this.amountOfClicks}`;
+    },
+  },
+  methods: {
+    increment() {
+      this.amountOfClicks += 1;
+    },
   },
 };
 </script>
